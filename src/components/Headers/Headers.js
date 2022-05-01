@@ -35,8 +35,7 @@ const Headers = () => {
           {" "}
           About
         </Link>
-        <Link className="mx-4 font-semibold text-green-500" to="/">
-          {" "}
+        <Link className="mx-4 font-semibold text-green-500" to="/login">
           Log in
         </Link>
       </div>
