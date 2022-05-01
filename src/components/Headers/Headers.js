@@ -4,16 +4,43 @@ import "./Headers.css";
 
 const Headers = () => {
   return (
-    <div>
-      <h1>this is headers</h1>
-      <Link to="/"> Home</Link>
-      <Link to="/"> evebt</Link>
-      <Link to="/"> Home</Link>
-      <Link to="/"> Home</Link>
-      <Link to="/"> Blog</Link>
-      <Link to="/"> About</Link>
-      <Link to="/"> Log in</Link>
-    </div>
+    <nav className="container flex justify-between mx-auto py-5">
+      <div>
+        <Link className="mx-4 font-semibold text-green-500 text-xl" to="/">
+          WareHouse
+        </Link>
+      </div>
+      <div className="flex justify-around">
+        <Link className="mx-4 font-semibold text-green-500" to="/">
+          {" "}
+          Home
+        </Link>
+        <Link className="mx-4 font-semibold text-green-500" to="/">
+          {" "}
+          evebt
+        </Link>
+        <Link className="mx-4 font-semibold text-green-500" to="/">
+          {" "}
+          Home
+        </Link>
+        <Link className="mx-4 font-semibold text-green-500" to="/">
+          {" "}
+          Home
+        </Link>
+        <Link className="mx-4 font-semibold text-green-500" to="/">
+          {" "}
+          Blog
+        </Link>
+        <Link className="mx-4 font-semibold text-green-500" to="/">
+          {" "}
+          About
+        </Link>
+        <Link className="mx-4 font-semibold text-green-500" to="/">
+          {" "}
+          Log in
+        </Link>
+      </div>
+    </nav>
   );
 };
 
