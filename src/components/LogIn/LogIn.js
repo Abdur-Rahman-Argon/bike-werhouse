@@ -1,13 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import auth from "../../firebase.init";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import {
+  useSignInWithEmailAndPassword,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
 import googleIcon from "../../images/google.png";
 import facebookIcon from "../../images/facebook.png";
 import githubIcon from "../../images/github.png";
 
 const LogIn = () => {
-  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+  const [signInWithGoogle] = useSignInWithGoogle(auth);
+
+  const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
 
   const handleGoogleSignin = () => {
     signInWithGoogle();
@@ -19,6 +24,7 @@ const LogIn = () => {
     const email = event.target.email.value;
     const password = event.target.password.value;
     const user = { email, password };
+    signInWithEmailAndPassword(email, password);
     console.log(user);
   };
 

@@ -12,12 +12,12 @@ import githubIcon from "../../images/github.png";
 const SignUp = () => {
   const [signInWithGoogle] = useSignInWithGoogle(auth);
 
+  const [createUserWithEmailAndPassword] =
+    useCreateUserWithEmailAndPassword(auth);
+
   const handleGoogleSignin = () => {
     signInWithGoogle();
   };
-
-  const [createUserWithEmailAndPassword] =
-    useCreateUserWithEmailAndPassword(auth);
 
   const handleSignUp = (event) => {
     event.preventDefault();
