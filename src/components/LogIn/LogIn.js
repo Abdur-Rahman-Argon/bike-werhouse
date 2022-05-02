@@ -2,12 +2,24 @@ import React from "react";
 import { Link } from "react-router-dom";
 import auth from "../../firebase.init";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import googleIcon from "../../images/google.png";
+import facebookIcon from "../../images/facebook.png";
+import githubIcon from "../../images/github.png";
 
 const LogIn = () => {
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
 
   const handleGoogleSignin = () => {
     signInWithGoogle();
+  };
+
+  const handleSignIn = (event) => {
+    event.preventDefault();
+
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    const user = { email, password };
+    console.log(user);
   };
 
   return (
@@ -26,7 +38,7 @@ const LogIn = () => {
         </div>
       </div>
 
-      <form className="my-5">
+      <form onSubmit={handleSignIn} className="my-5">
         <div className="my-4 mx-8 text-left ">
           <label htmlFor="email">Email*</label>
           <br />
@@ -88,15 +100,21 @@ const LogIn = () => {
       <div>
         <button
           onClick={handleGoogleSignin}
-          className="rounded-full border-4 mx-3 px-1 py-3"
+          className="rounded-full border-4 mx-3 p-2"
         >
-          Google
+          <img className="w-10" src={googleIcon} alt="" />
         </button>
-        <button className="rounded-full border-4 mx-3 px-1 py-3">
-          Facebook
+        <button
+          onClick={handleGoogleSignin}
+          className="rounded-full border-4 mx-3 p-2"
+        >
+          <img className="w-10" src={facebookIcon} alt="" />
         </button>
-        <button className="rounded-full border-4 mx-3 px-1 py-3 border-stone-800">
-          Github
+        <button
+          onClick={handleGoogleSignin}
+          className="rounded-full border-4 mx-3 p-2"
+        >
+          <img className="w-10" src={githubIcon} alt="" />
         </button>
       </div>
     </div>
