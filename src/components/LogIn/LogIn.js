@@ -1,7 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import auth from "../../firebase.init";
+import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 
 const LogIn = () => {
+  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+
+  const handleGoogleSignin = () => {
+    signInWithGoogle();
+  };
+
   return (
     <div className=" border-2 w-96 mx-auto rounded-xl p-8">
       <h1 className="text-2xl text-emerald-500 font-semibold">Please logIn</h1>
@@ -11,7 +19,7 @@ const LogIn = () => {
           <hr className="w-20 bg-slate-400  rounded-md" />
         </div>
         <div>
-          <span className="text-sm text-slate-400">login with Email</span>
+          <span className="text-sm text-slate-400 ">login with Email</span>
         </div>
         <div className="m-2">
           <hr className="w-20 bg-slate-400  rounded-md" />
@@ -49,8 +57,12 @@ const LogIn = () => {
           </div>
         </div>
 
-        <div className="rounded-full py-2 my-3 bg-lime-600 w-52 mx-auto text-white">
-          <input type="submit" value="LogIn" />
+        <div className="rounded-full py-2 my-5 bg-lime-600 w-52 mx-auto ">
+          <input
+            className="text-white font-semibold text-xl"
+            type="submit"
+            value="LogIn"
+          />
         </div>
       </form>
       <div>
@@ -74,7 +86,18 @@ const LogIn = () => {
       </div>
 
       <div>
-        <p>Google</p>
+        <button
+          onClick={handleGoogleSignin}
+          className="rounded-full border-4 mx-3 px-1 py-3"
+        >
+          Google
+        </button>
+        <button className="rounded-full border-4 mx-3 px-1 py-3">
+          Facebook
+        </button>
+        <button className="rounded-full border-4 mx-3 px-1 py-3 border-stone-800">
+          Github
+        </button>
       </div>
     </div>
   );
