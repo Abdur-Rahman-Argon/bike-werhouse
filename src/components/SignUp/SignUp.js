@@ -1,5 +1,8 @@
 import React from "react";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import {
+  useCreateUserWithEmailAndPassword,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import auth from "../../firebase.init";
 import googleIcon from "../../images/google.png";
@@ -7,18 +10,25 @@ import facebookIcon from "../../images/facebook.png";
 import githubIcon from "../../images/github.png";
 
 const SignUp = () => {
-  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+  const [signInWithGoogle] = useSignInWithGoogle(auth);
 
   const handleGoogleSignin = () => {
     signInWithGoogle();
   };
 
-  const handleSignIn = (event) => {
+  const [createUserWithEmailAndPassword] =
+    useCreateUserWithEmailAndPassword(auth);
+
+  const handleSignUp = (event) => {
     event.preventDefault();
 
+    const name = event.target.name.value;
     const email = event.target.email.value;
     const password = event.target.password.value;
+    const confirmPassword = event.target.confirmPassword.value;
     const user = { email, password };
+
+    createUserWithEmailAndPassword(email, password);
     console.log(user);
   };
 
@@ -40,12 +50,12 @@ const SignUp = () => {
         </div>
       </div>
 
-      <form onSubmit={handleSignIn} className="my-5">
+      <form onSubmit={handleSignUp} className="my-5">
         <div className="my-4 mx-8 text-left ">
           <label htmlFor="name">Name*</label>
           <br />
           <input
-            className="border-2 rounded-full w-60"
+            className="border-2 rounded-full w-60 py-1 px-2"
             type="text"
             name="name"
             id="name"
@@ -56,7 +66,7 @@ const SignUp = () => {
           <label htmlFor="email">Email*</label>
           <br />
           <input
-            className="border-2 rounded-full w-60"
+            className="border-2 rounded-full w-60 py-1 px-2"
             type="email"
             name="email"
             id="email"
@@ -67,7 +77,7 @@ const SignUp = () => {
         <div className="my-4 mx-8 text-left">
           <label htmlFor="password">Password*</label>
           <input
-            className="border-2 rounded-full w-60"
+            className="border-2 rounded-full w-60 py-1 px-2"
             type="password"
             name="password"
             id="password"
@@ -76,10 +86,10 @@ const SignUp = () => {
         <div className="my-4 mx-8 text-left">
           <label htmlFor="confirmPassword">Confirm Password*</label>
           <input
-            className="border-2 rounded-full w-60"
+            className="border-2 rounded-full w-60 py-1 px-2"
             type="password"
             name="confirmPassword"
-            id="password"
+            id="confirmPassword"
           />
         </div>
         <div className="m-3 flex items-center">
