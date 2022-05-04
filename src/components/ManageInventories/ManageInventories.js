@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import CustomiseInventory from "../Share/CustomiseInventory/CustomiseInventory";
 import useProducts from "../utilites/useProducts";
 
@@ -36,6 +37,14 @@ const ManageInventories = () => {
             ))}
           </tbody>
         </table>
+      </div>
+      <div className="py-8">
+        <Link
+          to="/addnewitem"
+          className="border-2 bg-lime-800 text-white py-4 px-16 mt-10 rounded-md"
+        >
+          Go Manege Your Inventorise &#8594;
+        </Link>
       </div>
     </div>
   );

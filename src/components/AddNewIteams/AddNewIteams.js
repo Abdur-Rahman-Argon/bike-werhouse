@@ -102,7 +102,7 @@ const AddNewIteams = () => {
 
         <div>
           <input
-            className="py-3 px-5 bg-emerald-600 text-white font-semibold text-2xl rounded-2xl"
+            className="py-3 px-5 bg-emerald-600 text-white font-semibold text-2xl rounded-md"
             type="submit"
             value="Add Iteams"
           />
