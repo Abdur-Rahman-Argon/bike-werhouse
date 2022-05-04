@@ -9,6 +9,7 @@ import Home from "./Home/Home/Home";
 import Inventories from "./components/Inventories/Inventories";
 import AddNewIteams from "./components/AddNewIteams/AddNewIteams";
 import UpdateItem from "./components/Share/UpdateItem/UpdateItem";
+import MyItems from "./components/MyItems/MyItems";
 
 function App() {
   return (
@@ -38,6 +39,14 @@ function App() {
           element={
             <RequireAuth>
               <UpdateItem></UpdateItem>
+            </RequireAuth>
+          }
+        ></Route>
+        <Route
+          path="/myitems"
+          element={
+            <RequireAuth>
+              <MyItems></MyItems>
             </RequireAuth>
           }
         ></Route>
