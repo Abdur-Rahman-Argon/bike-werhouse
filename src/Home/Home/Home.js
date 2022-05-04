@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
+import "./Home.css";
 import Banners from "../Banners/Banners";
 import IteamList from "../../components/IteamList/IteamList";
 import "./Home.css";
+import useProducts from "../../components/utilites/useProducts";
 
 const Home = () => {
-  const [products, setProduct] = useState([]);
-  useEffect(() => {
-    fetch("products.json")
-      .then((res) => res.json())
-      .then((data) => setProduct(data));
-  }, []);
-  console.log(products);
+  const [products, setProduct] = useProducts([]);
+  const items = products.slice(1, 4);
+  console.log(items);
+
   return (
     <div>
       <Banners></Banners>
@@ -35,8 +34,8 @@ const Home = () => {
             </tr>
           </thead>
           <tbody>
-            {products.map((user) => (
-              <IteamList user={user}></IteamList>
+            {items.map((item) => (
+              <IteamList item={item}></IteamList>
             ))}
           </tbody>
         </table>

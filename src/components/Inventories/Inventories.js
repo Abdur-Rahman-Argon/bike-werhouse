@@ -4,12 +4,7 @@ import useProducts from "../utilites/useProducts";
 
 const Inventories = () => {
   const [products, setProduct] = useProducts([]);
-  useEffect(() => {
-    fetch("products.json")
-      .then((res) => res.json())
-      .then((data) => setProduct(data));
-  }, []);
-  console.log(products);
+
   return (
     <div>
       <div className="border-2 my-5 w-10/12 mx-auto">
@@ -33,8 +28,8 @@ const Inventories = () => {
             </tr>
           </thead>
           <tbody>
-            {products.map((user) => (
-              <IteamList user={user}></IteamList>
+            {products.map((item) => (
+              <IteamList item={item}></IteamList>
             ))}
           </tbody>
         </table>

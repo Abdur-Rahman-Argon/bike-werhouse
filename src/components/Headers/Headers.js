@@ -43,7 +43,7 @@ const Headers = () => {
 
             <CustomLink
               className="mx-4 font-semibold text-green-500"
-              to="/addnewitems"
+              to="/addnewitem"
             >
               Add New Item
             </CustomLink>

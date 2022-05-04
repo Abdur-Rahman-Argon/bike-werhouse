@@ -7,6 +7,8 @@ import SignUp from "./components/SignUp/SignUp";
 import RequireAuth from "./components/Share/RequreAuth/RequreAuth";
 import Home from "./Home/Home/Home";
 import Inventories from "./components/Inventories/Inventories";
+import AddNewIteams from "./components/AddNewIteams/AddNewIteams";
+import UpdateItem from "./components/Share/UpdateItem/UpdateItem";
 
 function App() {
   return (
@@ -16,10 +18,26 @@ function App() {
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
         <Route
+          path="/addnewitem"
+          element={
+            <RequireAuth>
+              <AddNewIteams></AddNewIteams>
+            </RequireAuth>
+          }
+        ></Route>
+        <Route
           path="/inventorise"
           element={
             <RequireAuth>
               <Inventories></Inventories>
+            </RequireAuth>
+          }
+        ></Route>
+        <Route
+          path="/inventorise/:id"
+          element={
+            <RequireAuth>
+              <UpdateItem></UpdateItem>
             </RequireAuth>
           }
         ></Route>
