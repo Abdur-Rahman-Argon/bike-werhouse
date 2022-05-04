@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import IteamList from "../IteamList/IteamList";
 import useProducts from "../utilites/useProducts";
 
@@ -6,8 +7,13 @@ const Inventories = () => {
   const [products, setProduct] = useProducts([]);
 
   return (
-    <div>
-      <div className="border-2 my-5 w-10/12 mx-auto">
+    <div className="my-5">
+      <div>
+        <h1 className="m-0 text-3xl font-semibold text-lime-700 underline">
+          See All Items:
+        </h1>
+      </div>
+      <div className="border-2 my-10 w-10/12 mx-auto">
         <table className="">
           <thead>
             <tr>
@@ -33,6 +39,14 @@ const Inventories = () => {
             ))}
           </tbody>
         </table>
+      </div>
+      <div className="pb-10">
+        <Link
+          to="/manageinventorise"
+          className="border-2 bg-lime-800 text-white py-4 px-16 mt-10"
+        >
+          Go Manege Your Inventorise &#8594;
+        </Link>
       </div>
     </div>
   );

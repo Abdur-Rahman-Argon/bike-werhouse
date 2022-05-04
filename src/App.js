@@ -10,6 +10,7 @@ import Inventories from "./components/Inventories/Inventories";
 import AddNewIteams from "./components/AddNewIteams/AddNewIteams";
 import UpdateItem from "./components/Share/UpdateItem/UpdateItem";
 import MyItems from "./components/MyItems/MyItems";
+import ManageInventories from "./components/ManageInventories/ManageInventories";
 
 function App() {
   return (
@@ -19,6 +20,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
         <Route
+          path="/inventorise"
+          element={<Inventories></Inventories>}
+        ></Route>
+        <Route
           path="/addnewitem"
           element={
             <RequireAuth>
@@ -27,18 +32,18 @@ function App() {
           }
         ></Route>
         <Route
-          path="/inventorise"
-          element={
-            <RequireAuth>
-              <Inventories></Inventories>
-            </RequireAuth>
-          }
-        ></Route>
-        <Route
           path="/inventorise/:id"
           element={
             <RequireAuth>
               <UpdateItem></UpdateItem>
+            </RequireAuth>
+          }
+        ></Route>
+        <Route
+          path="/manageinventorise"
+          element={
+            <RequireAuth>
+              <ManageInventories></ManageInventories>
             </RequireAuth>
           }
         ></Route>
