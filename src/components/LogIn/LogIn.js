@@ -1,7 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import {
+  useAuthState,
   useSignInWithEmailAndPassword,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
@@ -10,6 +11,15 @@ import facebookIcon from "../../images/facebook.png";
 import githubIcon from "../../images/github.png";
 
 const LogIn = () => {
+  const [user] = useAuthState(auth);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
+
+  if (user) {
+    navigate(from, { replace: true });
+  }
+
   const [signInWithGoogle] = useSignInWithGoogle(auth);
 
   const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);

@@ -3,6 +3,7 @@ import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import auth from "../../firebase.init";
+import CustomLink from "../Share/CustomLink/CustomLink";
 import "./Headers.css";
 
 const Headers = () => {
@@ -20,30 +21,50 @@ const Headers = () => {
         </Link>
       </div>
       <div className="flex justify-around">
-        <Link className="mx-4 font-semibold text-green-500" to="/">
-          {" "}
+        <CustomLink className="mx-4 font-semibold text-green-500" to="/">
           Home
-        </Link>
-        <Link className="mx-4 font-semibold text-green-500" to="/">
-          {" "}
-          evebt
-        </Link>
-        <Link className="mx-4 font-semibold text-green-500" to="/">
-          {" "}
-          Home
-        </Link>
-        <Link className="mx-4 font-semibold text-green-500" to="/">
-          {" "}
-          Home
-        </Link>
-        <Link className="mx-4 font-semibold text-green-500" to="/">
-          {" "}
+        </CustomLink>
+
+        <CustomLink
+          className="mx-4 font-semibold text-green-500"
+          to="/inventorise"
+        >
+          Inventories
+        </CustomLink>
+
+        {user && (
+          <>
+            <CustomLink
+              className="mx-4 font-semibold text-green-500"
+              to="/manageinventorise"
+            >
+              Manage Inventory
+            </CustomLink>
+
+            <CustomLink
+              className="mx-4 font-semibold text-green-500"
+              to="/addnewitems"
+            >
+              Add New Item
+            </CustomLink>
+
+            <CustomLink
+              className="mx-4 font-semibold text-green-500"
+              to="/myitems"
+            >
+              My Items
+            </CustomLink>
+          </>
+        )}
+
+        <CustomLink className="mx-4 font-semibold text-green-500" to="/blog">
           Blog
-        </Link>
-        <Link className="mx-4 font-semibold text-green-500" to="/">
-          {" "}
+        </CustomLink>
+
+        <CustomLink className="mx-4 font-semibold text-green-500" to="/about">
           About
-        </Link>
+        </CustomLink>
+
         {user ? (
           <button
             onClick={handleLogOut}
@@ -52,9 +73,9 @@ const Headers = () => {
             LogOut
           </button>
         ) : (
-          <Link className="mx-4 font-semibold text-green-500" to="/login">
+          <CustomLink className="mx-4 font-semibold text-green-500" to="/login">
             Log in
-          </Link>
+          </CustomLink>
         )}
       </div>
     </nav>
