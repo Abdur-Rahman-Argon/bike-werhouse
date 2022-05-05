@@ -10,7 +10,7 @@ const CustomiseInventory = (props) => {
       </td>
       <td className="border-2 px-3">{item.productName}</td>
 
-      <td className="border-2 px-3">{item.price}</td>
+      <td className="border-2 px-3">${item.price}</td>
       <td className="border-2 px-3">{item.supplierName}</td>
       <td className="border-2 px-3">{item.stock}</td>
       <td className="border-2 px-3">

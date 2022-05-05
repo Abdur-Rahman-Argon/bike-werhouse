@@ -43,7 +43,7 @@ const ManageInventories = () => {
           to="/addnewitem"
           className="border-2 bg-lime-800 text-white py-4 px-16 mt-10 rounded-md"
         >
-          Go Manege Your Inventorise &#8594;
+          Go Add new Inventorise &#8594;
         </Link>
       </div>
     </div>

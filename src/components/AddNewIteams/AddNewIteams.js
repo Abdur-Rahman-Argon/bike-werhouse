@@ -1,102 +1,92 @@
 import React from "react";
+import { useForm } from "react-hook-form";
 
 const AddNewIteams = () => {
-  const handleItemAdd = (event) => {
-    event.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => console.log(data);
 
-    const productName = event.target.productname.value;
-    const supplyerName = event.target.supplyername.value;
-    const price = event.target.price.value;
-    const productquntity = event.target.productquntity.value;
-    const img = event.target.img.value;
-    const description = event.target.description.value;
-    const item = {
-      productName,
-      supplyerName,
-      price,
-      productquntity,
-      img,
-      description,
-    };
-    console.log(item);
-  };
   return (
-    <div className=" border-2 w-6/12 mx-auto rounded-xl p-8">
+    <div className=" border-2 w-4/12 mx-auto rounded-xl p-8 shadow-2xl">
       <h1 className="m-0 text-3xl font-semibold text-lime-700">
         Please Add a New Items
       </h1>
-      <form onSubmit={handleItemAdd}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="my-4 mx-8 text-left">
-          <label htmlFor="productname">Product Name: </label>
+          <label htmlFor="productName">Product Name: </label>
           <br />
           <input
-            className="border-2 rounded-full w-80 p-2"
+            className="border-2 rounded-xl w-80 p-2"
             type="text"
-            name="productname"
-            id="productname"
-            required
+            name="productName"
+            id="productName"
             placeholder="Product Name"
+            {...register("productName", { required: true })}
           />
         </div>
         <div className="my-4 mx-8 text-left ">
-          <label htmlFor="supplyername">Supplyer Name: </label>
+          <label htmlFor="supplierName">Supplyer Name: </label>
           <br />
           <input
-            className="border-2 rounded-full w-80 p-2"
+            className="border-2 rounded-xl w-80 p-2"
             type="text"
-            name="supplyername"
-            id="supplyername"
-            required
-            placeholder="Supplyer Name"
+            name="supplierName"
+            id="supplierName"
+            placeholder="Supplier Name"
+            {...register("supplierName", { required: true })}
           />
         </div>
         <div className="my-4 mx-8 text-left ">
           <label htmlFor="price">Price: </label>
           <br />
           <input
-            className="border-2 rounded-full w-80 p-2"
+            className="border-2 rounded-xl w-80 p-2"
             type="number"
             name="price"
             id="price"
             placeholder="Price"
-            required
+            {...register("price", { required: true })}
           />
         </div>
         <div className="my-4 mx-8 text-left">
           <label htmlFor="productquntity">Product Countity: </label>
           <br />
           <input
-            className="border-2 rounded-full w-80 p-2"
+            className="border-2 rounded-xl w-80 p-2"
             type="number"
             name="productquntity"
             id="productquntity"
             placeholder="Product Countity"
-            required
+            {...register("stock", { required: true })}
           />
         </div>
         <div className="my-4 mx-8 text-left">
           <label htmlFor="img">Img Url: </label>
           <br />
           <input
-            className="border-2 rounded-full w-80 p-2"
+            className="border-2 rounded-xl w-80 p-2"
             type="text"
             name="img"
             id="img"
             placeholder="Img Url"
-            required
+            {...register("img", { required: true })}
           />
         </div>
         <div className="my-4 mx-8 text-left">
           <label htmlFor="description">Description: </label>
           <br />
           <textarea
-            className="border-2 rounded-md"
+            className="border-2 rounded-md px-3"
             name="description"
             id="description"
             cols="40"
             rows="3"
             placeholder="Short Description"
-            required
+            {...register("description", { required: true })}
           ></textarea>
         </div>
 

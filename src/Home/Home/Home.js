@@ -15,7 +15,7 @@ const Home = () => {
       <Banners></Banners>
       <div className="border-2 my-5 w-10/12 mx-auto">
         <table className="">
-          <thead>
+          <thead className=" bg-green-100">
             <tr>
               <td className="border-2 px-3 font-semibold text-lg">Si</td>
               <td className="border-2 px-3 font-semibold text-lg">Image</td>
