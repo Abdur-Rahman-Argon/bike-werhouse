@@ -12,6 +12,8 @@ import googleIcon from "../../images/google.png";
 import facebookIcon from "../../images/facebook.png";
 import githubIcon from "../../images/github.png";
 import Spiners from "./../Share/Spiners/Spiners";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const LogIn = () => {
   const [user] = useAuthState(auth);
@@ -26,17 +28,18 @@ const LogIn = () => {
     navigate(from, { replace: true });
   }
 
-  const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
+  const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
 
   const handleResetPassword = async () => {
     if (userEmail) {
       await sendPasswordResetEmail(userEmail);
+      toast.success("Email send for Reset Password");
     } else {
-      setError("Please Give Email for Reset Password");
+      toast.error("Please Give Email for Reset Password");
     }
   };
 
-  const [signInWithGoogle] = useSignInWithGoogle(auth);
+  const [signInWithGoogle, GUser, GLoading] = useSignInWithGoogle(auth);
 
   const handleGoogleSignin = () => {
     signInWithGoogle();
@@ -45,7 +48,7 @@ const LogIn = () => {
   const [signInWithEmailAndPassword, loading, error] =
     useSignInWithEmailAndPassword(auth);
 
-  if (loading) {
+  if (loading || GLoading || sending) {
     return <Spiners />;
   }
 
@@ -164,6 +167,7 @@ const LogIn = () => {
           <img className="w-10" src={githubIcon} alt="" />
         </button>
       </div>
+      <ToastContainer />
     </div>
   );
 };
