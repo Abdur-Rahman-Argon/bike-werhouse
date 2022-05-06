@@ -11,12 +11,17 @@ import UpdateItem from "./components/Share/UpdateItem/UpdateItem";
 import MyItems from "./components/MyItems/MyItems";
 import ManageInventories from "./components/ManageInventories/ManageInventories";
 import NotFound from "./components/Share/NotFound/NotFound";
+import auth from "./firebase.init";
+import { useAuthState } from "react-firebase-hooks/auth";
 import Spiners from "./components/Share/Spiners/Spiners";
 
 function App() {
-  window.onload = (event) => {
-    return <Spiners></Spiners>;
-  };
+  const [user, loading, error] = useAuthState(auth);
+
+  if (loading) {
+    return <Spiners />;
+  }
+
   return (
     <div className="App">
       <Headers></Headers>

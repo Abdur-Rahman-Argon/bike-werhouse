@@ -2,7 +2,7 @@ import React from "react";
 
 const Spiners = () => {
   return (
-    <div class="text-center">
+    <div class="text-center my-40">
       <svg
         role="status"
         class="inline w-32 h-32 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"

@@ -10,7 +10,7 @@ const MyItems = () => {
       <h1>my added Products</h1>
       <div>
         {items.map((item) => (
-          <MyItemList item={item}></MyItemList>
+          <MyItemList key={item._id} item={item}></MyItemList>
         ))}
       </div>
     </div>

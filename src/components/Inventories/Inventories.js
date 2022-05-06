@@ -34,7 +34,7 @@ const Inventories = () => {
           </thead>
           <tbody>
             {products.map((item) => (
-              <IteamList item={item}></IteamList>
+              <IteamList key={item._id} item={item}></IteamList>
             ))}
           </tbody>
         </table>

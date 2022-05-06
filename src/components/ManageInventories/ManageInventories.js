@@ -26,7 +26,6 @@ const ManageInventories = () => {
     <div>
       <div>
         <h1 className="text-2xl font-semibold text-green-600">
-          {" "}
           Customise Your Inventories:
         </h1>
       </div>
@@ -50,6 +49,7 @@ const ManageInventories = () => {
           <tbody>
             {items.map((item) => (
               <CustomiseInventory
+                key={item._id}
                 item={item}
                 removeItem={removeItem}
               ></CustomiseInventory>
