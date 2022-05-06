@@ -7,7 +7,7 @@ import useProducts from "../../components/utilites/useProducts";
 
 const Home = () => {
   const [products, setProduct] = useProducts([]);
-  const items = products.slice(1, 4);
+  const items = products.slice(1, 7);
   console.log(items);
 
   return (
@@ -17,7 +17,6 @@ const Home = () => {
         <table className="">
           <thead className=" bg-green-100">
             <tr>
-              <td className="border-2 px-3 font-semibold text-lg">Si</td>
               <td className="border-2 px-3 font-semibold text-lg">Image</td>
               <td className="border-2 px-3 font-semibold text-lg">
                 Product Name

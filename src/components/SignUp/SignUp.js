@@ -1,35 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   useCreateUserWithEmailAndPassword,
+  useSendEmailVerification,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import googleIcon from "../../images/google.png";
 import facebookIcon from "../../images/facebook.png";
 import githubIcon from "../../images/github.png";
+import Spiners from "../Share/Spiners/Spiners";
 
 const SignUp = () => {
   const [signInWithGoogle] = useSignInWithGoogle(auth);
+  const [error, setError] = useState();
 
-  const [createUserWithEmailAndPassword] =
-    useCreateUserWithEmailAndPassword(auth);
+  const [createUserWithEmailAndPassword, user, loading] =
+    useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
   const handleGoogleSignin = () => {
     signInWithGoogle();
   };
 
-  const handleSignUp = (event) => {
-    event.preventDefault();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
 
+  if (user) {
+    navigate(from, { replace: true });
+  }
+  if (loading) {
+    return <Spiners />;
+  }
+
+  const handleSignUp = async (event) => {
+    event.preventDefault();
     const name = event.target.name.value;
     const email = event.target.email.value;
     const password = event.target.password.value;
     const confirmPassword = event.target.confirmPassword.value;
     const user = { email, password };
-
-    createUserWithEmailAndPassword(email, password);
-    console.log(user);
+    if (password === confirmPassword) {
+      await createUserWithEmailAndPassword(email, password);
+      alert("Your Email Verification is Sent, Please Verify?");
+      setError("");
+    } else {
+      setError("Password isn't matched");
+    }
   };
 
   return (
@@ -100,6 +117,9 @@ const SignUp = () => {
               terms and conditions?
             </span>{" "}
           </p>
+        </div>
+        <div>
+          <p className="m-1 text-red-600">{error}</p>
         </div>
 
         <div className="rounded-full py-2 my-5 bg-lime-600 w-52 mx-auto ">

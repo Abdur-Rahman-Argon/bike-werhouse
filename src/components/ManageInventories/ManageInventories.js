@@ -5,6 +5,23 @@ import useProducts from "../utilites/useProducts";
 
 const ManageInventories = () => {
   const [items, setItems] = useProducts([]);
+
+  const removeItem = (id) => {
+    const sure = window.confirm("Are you sure remove it");
+    if (sure) {
+      const url = `http://localhost:5000/productItem/${id}`;
+      fetch(url, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          const newItems = items.filter((item) => item._id !== id);
+          setItems(newItems);
+
+          console.log(result);
+        });
+    }
+  };
   return (
     <div>
       <div>
@@ -17,7 +34,6 @@ const ManageInventories = () => {
         <table className="">
           <thead>
             <tr>
-              <td className="border-2 px-3 font-semibold text-lg">Si</td>
               <td className="border-2 px-3 font-semibold text-lg">Image</td>
               <td className="border-2 px-3 font-semibold text-lg">
                 Product Name
@@ -33,7 +49,10 @@ const ManageInventories = () => {
           </thead>
           <tbody>
             {items.map((item) => (
-              <CustomiseInventory item={item}></CustomiseInventory>
+              <CustomiseInventory
+                item={item}
+                removeItem={removeItem}
+              ></CustomiseInventory>
             ))}
           </tbody>
         </table>

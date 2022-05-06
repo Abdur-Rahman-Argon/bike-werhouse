@@ -21,7 +21,6 @@ const IteamList = (props) => {
 
   return (
     <tr className="border-2">
-      <td className="border-2">{serial}</td>
       <td className="border-2">
         <img src={img} className="w-14" />
       </td>

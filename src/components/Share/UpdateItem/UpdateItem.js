@@ -3,7 +3,9 @@ import { Link, useParams } from "react-router-dom";
 
 const UpdateItem = () => {
   const { itemId } = useParams();
+  const [newstock, setNewStock] = useState([]);
 
+  //Load single Item
   const [product, setProduct] = useState([]);
   useEffect(() => {
     fetch(`http://localhost:5000/productItem/${itemId}`)
@@ -11,35 +13,50 @@ const UpdateItem = () => {
       .then((data) => setProduct(data));
   }, []);
 
-  const {
-    _id,
-    img,
-    productName,
-    description,
-    supplierName,
-    stock,
-    price,
-    delivery,
-  } = product;
+  // destractureing item property
+  const { _id, img, productName, description, supplierName, stock, price } =
+    product;
 
-  const updatePrice = (event) => {
-    event.preventDefault();
-    const newPrice = parseInt(event.target.price.value);
-    const priceN = parseInt(price);
-    console.log(priceN + newPrice);
-  };
+  const url = `http://localhost:5000/productItem/${_id}`;
+
+  // update stack
   const updateStock = (event) => {
     event.preventDefault();
     const newStock = parseInt(event.target.stock.value);
     const stockN = parseInt(stock);
-    console.log(newStock + stockN);
+    const updateStock = newStock + stockN;
+    const updateItem = { stock: updateStock };
+
+    fetch(url, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(updateItem),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+        alert("stock update successes full");
+        event.target.reset();
+      });
   };
+
   const handleDelevered = () => {
     const stockN = parseInt(stock) - 1;
+    const UpdateItem = { stock: stockN };
 
-    const deliveryN = parseInt(delivery) + 1;
-
-    console.log(stockN, deliveryN);
+    fetch(url, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(UpdateItem),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+      });
   };
 
   return (
@@ -48,11 +65,24 @@ const UpdateItem = () => {
         <h1>update items</h1>
       </div>
       <div className="  my-8 w-8/12 mx-auto grid grid-cols-2  bg-white shadow-2xl rounded-md ">
-        <div className="border-0">
-          <img src={img} className="w-90" />
+        <div className="border-0 py-16">
+          <img src={img} className="w-90 mx-auto" />
+          <h1 className="text-sm text-center my-14">
+            <span> Image Title: </span>
+            <span> {productName}</span>
+          </h1>
         </div>
         <div className="border-0  p-12 text-left ">
           <h1 className="text-3xl my-2 ">{productName}</h1>
+          <div className="my-5">
+            <h2>
+              <span className="text-md font-medium text-sky-700 mr-10">
+                Product Id:
+              </span>
+              <span>{_id}</span>
+            </h2>
+          </div>
+          <hr />
           <div className="my-5">
             <h2>
               <span className="text-md font-medium text-sky-700 mr-10">
@@ -69,29 +99,10 @@ const UpdateItem = () => {
               </span>
               <span> ${price}</span>
             </h2>
-            <form onSubmit={updatePrice}>
-              <label
-                className="text-md font-medium text-sky-700 mr-3"
-                htmlFor="price"
-              >
-                Update Price:
-              </label>
-              <input
-                className="w-20 border-2 mx-2"
-                type="number"
-                name="price"
-                id="price"
-              />
-              <input
-                type="submit"
-                className=" border-2 bg-emerald-400 px-3 rounded-md py-2"
-                value="Upgrade"
-              />
-            </form>
           </div>
           <hr />
           <div className="my-5">
-            <h2 className="">
+            <h2 className="my-3">
               <span className="text-md font-medium text-sky-700 mr-16">
                 Stock:
               </span>
@@ -99,7 +110,8 @@ const UpdateItem = () => {
                 in stock ({stock} units)
               </span>
             </h2>
-            <form onSubmit={updateStock}>
+            <hr />
+            <form onSubmit={updateStock} className="my-3">
               <label
                 className="text-md font-medium text-sky-700 mr-3"
                 htmlFor="stock"
@@ -121,10 +133,6 @@ const UpdateItem = () => {
           </div>
           <hr />
           <div className="my-2">
-            <span className="text-md font-medium text-sky-700 mr-9">
-              Delivered:
-            </span>
-            <span>{delivery}</span>
             <button
               onClick={handleDelevered}
               className=" my-5 ml-3 border-2 bg-emerald-400 px-8 rounded-md py-2"

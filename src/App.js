@@ -1,7 +1,6 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Headers from "./components/Headers/Headers";
-
 import LogIn from "./components/LogIn/LogIn";
 import SignUp from "./components/SignUp/SignUp";
 import RequireAuth from "./components/Share/RequreAuth/RequreAuth";
@@ -12,8 +11,12 @@ import UpdateItem from "./components/Share/UpdateItem/UpdateItem";
 import MyItems from "./components/MyItems/MyItems";
 import ManageInventories from "./components/ManageInventories/ManageInventories";
 import NotFound from "./components/Share/NotFound/NotFound";
+import Spiners from "./components/Share/Spiners/Spiners";
 
 function App() {
+  window.onload = (event) => {
+    return <Spiners></Spiners>;
+  };
   return (
     <div className="App">
       <Headers></Headers>

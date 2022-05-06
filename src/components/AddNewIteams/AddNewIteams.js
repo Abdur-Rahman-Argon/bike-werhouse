@@ -8,7 +8,22 @@ const AddNewIteams = () => {
     watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+
+  const onSubmit = (data) => {
+    const url = "http://localhost:5000/productItems";
+
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((result) => console.log(result));
+    alert("your new product is added now success");
+    console.log(data);
+  };
 
   return (
     <div className=" border-2 w-4/12 mx-auto rounded-xl p-8 shadow-2xl">

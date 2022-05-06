@@ -1,41 +1,67 @@
-import React from "react";
+import React, { useState } from "react";
+// import { Rings } from "react-loader-spinner";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import {
   useAuthState,
+  useSendPasswordResetEmail,
   useSignInWithEmailAndPassword,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
 import googleIcon from "../../images/google.png";
 import facebookIcon from "../../images/facebook.png";
 import githubIcon from "../../images/github.png";
+import Spiners from "./../Share/Spiners/Spiners";
 
 const LogIn = () => {
   const [user] = useAuthState(auth);
+  const [Error, setError] = useState();
+  const [userEmail, setEmail] = useState();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state?.from?.pathname || "/";
+  console.log(userEmail);
 
   if (user) {
     navigate(from, { replace: true });
   }
 
-  const [signInWithGoogle] = useSignInWithGoogle(auth);
+  const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
 
-  const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
+  const handleResetPassword = async () => {
+    if (userEmail) {
+      await sendPasswordResetEmail(userEmail);
+    } else {
+      setError("Please Give Email for Reset Password");
+    }
+  };
+
+  const [signInWithGoogle] = useSignInWithGoogle(auth);
 
   const handleGoogleSignin = () => {
     signInWithGoogle();
   };
 
+  const [signInWithEmailAndPassword, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+
+  if (loading) {
+    return <Spiners />;
+  }
+
   const handleSignIn = (event) => {
     event.preventDefault();
-
     const email = event.target.email.value;
+    setEmail(email);
     const password = event.target.password.value;
-    const user = { email, password };
-    signInWithEmailAndPassword(email, password);
-    console.log(user);
+
+    if (error) {
+      console.log(error);
+      setError("Please Give Correct Email & Password!");
+    } else {
+      signInWithEmailAndPassword(email, password);
+      setError("");
+    }
   };
 
   return (
@@ -75,16 +101,13 @@ const LogIn = () => {
             id="password"
           />
         </div>
-        <div className="flex items-center justify-between m-3">
-          <div>
-            <input type="checkbox" name="confirm" id="confirm" />
-            <span className="mx-2">Rember me</span>
-          </div>
-          <div>
-            <span className="text-sky-500 font-semibold">Forgot Password</span>
-          </div>
+        <div className="flex items-center my-3 mx-8">
+          <input type="checkbox" name="confirm" id="confirm" />
+          <span className="mx-2">Rember me</span>
         </div>
-
+        <div>
+          <p className="m-1 text-red-600"> {Error}</p>
+        </div>
         <div className="rounded-full py-2 my-5 bg-lime-600 w-52 mx-auto ">
           <input
             className="text-white font-semibold text-xl"
@@ -93,6 +116,14 @@ const LogIn = () => {
           />
         </div>
       </form>
+      <div className="my-5">
+        <button
+          onClick={handleResetPassword}
+          className="text-sky-500 font-semibold"
+        >
+          Reset Password In Email
+        </button>
+      </div>
       <div>
         <p>
           Not registered yet?
