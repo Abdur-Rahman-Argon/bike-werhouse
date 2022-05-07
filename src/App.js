@@ -14,6 +14,7 @@ import NotFound from "./components/Share/NotFound/NotFound";
 import auth from "./firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Spiners from "./components/Share/Spiners/Spiners";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const [user, loading, error] = useAuthState(auth);
@@ -69,6 +70,7 @@ function App() {
 
         <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>
+      <ToastContainer />
     </div>
   );
 }

@@ -14,6 +14,11 @@ const Home = () => {
   return (
     <div>
       <Banners></Banners>
+      <div className="my-6">
+        <h2 className="text-2xl font-semibold border-b-2 border-gray-900 w-40 mx-auto">
+          Inventories &#8594;
+        </h2>
+      </div>
       <div className="border-2 my-5 w-10/12 mx-auto">
         <table className="">
           <thead className=" bg-green-100">

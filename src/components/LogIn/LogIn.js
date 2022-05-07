@@ -12,7 +12,7 @@ import googleIcon from "../../images/google.png";
 import facebookIcon from "../../images/facebook.png";
 import githubIcon from "../../images/github.png";
 import Spiners from "./../Share/Spiners/Spiners";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const LogIn = () => {
@@ -57,7 +57,7 @@ const LogIn = () => {
     const email = event.target.email.value;
     setEmail(email);
     const password = event.target.password.value;
-
+    event.target.reset();
     if (!error) {
       setError("");
       signInWithEmailAndPassword(email, password);
@@ -167,7 +167,6 @@ const LogIn = () => {
           <img className="w-10" src={githubIcon} alt="" />
         </button>
       </div>
-      <ToastContainer />
     </div>
   );
 };

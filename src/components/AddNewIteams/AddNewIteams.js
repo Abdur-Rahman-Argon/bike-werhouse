@@ -1,7 +1,12 @@
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import auth from "../../firebase.init";
 
 const AddNewIteams = () => {
+  const [user] = useAuthState(auth);
+
   const {
     register,
     handleSubmit,
@@ -10,6 +15,19 @@ const AddNewIteams = () => {
   } = useForm();
 
   const onSubmit = (data) => {
+    const email = user.email;
+    const delivery = "0";
+    const { productName, supplierName, price, stock, img, description } = data;
+    const newProduct = {
+      email,
+      productName,
+      supplierName,
+      price,
+      stock,
+      img,
+      description,
+      delivery,
+    };
     const url = "http://localhost:5000/productItems";
 
     fetch(url, {
@@ -17,12 +35,14 @@ const AddNewIteams = () => {
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(newProduct),
     })
       .then((res) => res.json())
-      .then((result) => console.log(result));
-    alert("your new product is added now success");
-    console.log(data);
+      .then((result) => {
+        if (result.insertedId) {
+          toast("your new product is added now success");
+        }
+      });
   };
 
   return (
