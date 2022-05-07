@@ -7,9 +7,9 @@ import useProducts from "../../components/utilites/useProducts";
 import Footer from "../Footer/Footer";
 
 const Home = () => {
-  const [products, setProduct] = useProducts([]);
+  const [products] = useProducts([]);
+
   const items = products.slice(1, 7);
-  console.log(items);
 
   return (
     <div>
@@ -40,7 +40,7 @@ const Home = () => {
           </thead>
           <tbody>
             {items.map((item) => (
-              <IteamList item={item}></IteamList>
+              <IteamList item={item} key={item._id}></IteamList>
             ))}
           </tbody>
         </table>

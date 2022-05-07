@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import { Rings } from "react-loader-spinner";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import {
@@ -19,11 +18,11 @@ const LogIn = () => {
   const [user] = useAuthState(auth);
   const [Error, setError] = useState();
   const [userEmail, setEmail] = useState();
+
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location?.state?.from?.pathname || "/";
-  console.log(userEmail);
 
+  const from = location?.state?.from?.pathname || "/";
   if (user) {
     navigate(from, { replace: true });
   }
@@ -57,13 +56,12 @@ const LogIn = () => {
     const email = event.target.email.value;
     setEmail(email);
     const password = event.target.password.value;
-    event.target.reset();
     if (!error) {
+      setError("Please Give Correct Email & Password!");
+    } else {
       setError("");
       signInWithEmailAndPassword(email, password);
-    } else {
-      console.log("error added", error);
-      setError("Please Give Correct Email & Password!");
+      event.target.reset();
     }
   };
 

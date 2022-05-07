@@ -16,7 +16,6 @@ const CustomiseInventory = ({ item, removeItem }) => {
       <td className="border-2 px-3">
         <button
           onClick={() => removeItem(_id)}
-          to="/inventorise/:id"
           className="border-2 px-2 bg-green-400 rounded-full"
         >
           Remove

@@ -40,7 +40,7 @@ const AddNewIteams = () => {
       .then((res) => res.json())
       .then((result) => {
         if (result.insertedId) {
-          toast("your new product is added now success");
+          toast("Your new Item added success");
         }
       });
   };
