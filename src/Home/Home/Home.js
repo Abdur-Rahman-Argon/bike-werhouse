@@ -4,6 +4,7 @@ import Banners from "../Banners/Banners";
 import IteamList from "../../components/IteamList/IteamList";
 import "./Home.css";
 import useProducts from "../../components/utilites/useProducts";
+import Footer from "../Footer/Footer";
 
 const Home = () => {
   const [products, setProduct] = useProducts([]);
@@ -39,6 +40,7 @@ const Home = () => {
           </tbody>
         </table>
       </div>
+      <Footer></Footer>
     </div>
   );
 };

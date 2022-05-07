@@ -58,12 +58,12 @@ const LogIn = () => {
     setEmail(email);
     const password = event.target.password.value;
 
-    if (error) {
-      console.log(error);
-      setError("Please Give Correct Email & Password!");
-    } else {
-      signInWithEmailAndPassword(email, password);
+    if (!error) {
       setError("");
+      signInWithEmailAndPassword(email, password);
+    } else {
+      console.log("error added", error);
+      setError("Please Give Correct Email & Password!");
     }
   };
 
@@ -106,7 +106,7 @@ const LogIn = () => {
         </div>
         <div className="flex items-center my-3 mx-8">
           <input type="checkbox" name="confirm" id="confirm" />
-          <span className="mx-2">Rember me</span>
+          <span className="mx-2">Remember Me.</span>
         </div>
         <div>
           <p className="m-1 text-red-600"> {Error}</p>

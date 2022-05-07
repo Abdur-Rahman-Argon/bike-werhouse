@@ -21,7 +21,7 @@ const Headers = () => {
     <nav className="container flex justify-between mx-auto py-3 my-5 bg-emerald-50 border-b-2">
       <div>
         <Link className="mx-4 font-semibold text-green-500 text-xl" to="/">
-          WareHouse
+          Motor-Bike WareHouse
         </Link>
       </div>
       <div className="flex justify-around">

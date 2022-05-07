@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 
 const UpdateItem = () => {
   const { itemId } = useParams();
-  const [newstock, setNewStock] = useState([]);
+  const [newstock, setNewStock] = useState();
 
   //Load single Item
   const [product, setProduct] = useState([]);
