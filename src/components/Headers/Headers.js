@@ -18,7 +18,7 @@ const Headers = () => {
     signOut(auth);
   };
   return (
-    <nav className="container flex justify-between mx-auto py-3 bg-emerald-50 border-b-2">
+    <nav className="w-10/12 flex justify-between mx-auto py-3 bg-emerald-50 border-b-2">
       <div>
         <Link className="mx-4 font-semibold text-green-500 text-xl" to="/">
           Motor-Bike WareHouse

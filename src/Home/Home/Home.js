@@ -5,6 +5,8 @@ import IteamList from "../../components/IteamList/IteamList";
 import "./Home.css";
 import useProducts from "../../components/utilites/useProducts";
 import Footer from "../Footer/Footer";
+import Delivery from "../Delivery/Delivery";
+import DeliveryProsess from "./DeliveryProsess/DeliveryProsess";
 
 const Home = () => {
   const [products] = useProducts([]);
@@ -14,7 +16,7 @@ const Home = () => {
   return (
     <div>
       <Banners></Banners>
-      <div className="my-6">
+      <div className="my-6 w-10/12">
         <h2 className="text-2xl font-semibold border-b-2 border-gray-900 w-40 mx-auto">
           Inventories &#8594;
         </h2>
@@ -45,6 +47,22 @@ const Home = () => {
           </tbody>
         </table>
       </div>
+
+      <div className="w-10/12 my-10 mx-auto">
+        <h2 className="text-2xl font-semibold border-b-2 border-gray-900 w-28 mx-2">
+          Marketing
+        </h2>
+        <div className="w-9/12 mx-auto">
+          <Delivery></Delivery>
+        </div>
+      </div>
+      <div className="w-10/12 mx-auto my-10">
+        <h2 className="text-2xl  font-semibold border-b-2 border-gray-900 w-48 mx-2 ">
+          Delivery prosess
+        </h2>
+        <DeliveryProsess></DeliveryProsess>
+      </div>
+
       <Footer></Footer>
     </div>
   );
