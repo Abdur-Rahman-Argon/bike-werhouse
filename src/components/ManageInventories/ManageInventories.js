@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import CustomiseInventory from "../Share/CustomiseInventory/CustomiseInventory";
 import useProducts from "../utilites/useProducts";
 
@@ -9,7 +10,7 @@ const ManageInventories = () => {
   const removeItem = (id) => {
     const sure = window.confirm("Are you sure remove it");
     if (sure) {
-      const url = `http://localhost:5000/productItem/${id}`;
+      const url = `https://afternoon-beach-43347.herokuapp.com/productItem/${id}`;
       fetch(url, {
         method: "DELETE",
       })
@@ -18,7 +19,9 @@ const ManageInventories = () => {
           const newItems = items.filter((item) => item._id !== id);
           setItems(newItems);
 
-          console.log(result);
+          if ((result.acknowledged = true)) {
+            toast.error("Remove Items Success");
+          }
         });
     }
   };

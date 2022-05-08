@@ -15,6 +15,7 @@ import auth from "./firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Spiners from "./components/Share/Spiners/Spiners";
 import { ToastContainer } from "react-toastify";
+import Blog from "./components/Blog/Blog";
 
 function App() {
   const [user, loading, error] = useAuthState(auth);
@@ -29,6 +30,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
+        <Route path="/blog" element={<Blog></Blog>}></Route>
         <Route
           path="/inventorise"
           element={<Inventories></Inventories>}

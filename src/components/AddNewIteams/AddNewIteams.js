@@ -28,7 +28,7 @@ const AddNewIteams = () => {
       description,
       delivery,
     };
-    const url = "http://localhost:5000/productItems";
+    const url = "https://afternoon-beach-43347.herokuapp.com/productItems";
 
     fetch(url, {
       method: "POST",

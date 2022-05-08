@@ -10,7 +10,7 @@ const MyItems = () => {
 
   useEffect(() => {
     const email = user.email;
-    const url = `http://localhost:5000/singleUserData?email=${email}`;
+    const url = `https://afternoon-beach-43347.herokuapp.com/singleUserData?email=${email}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setItems(data));

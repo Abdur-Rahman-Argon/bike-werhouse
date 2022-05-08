@@ -10,7 +10,7 @@ const UpdateItem = () => {
   //Load single Item
   const [item, setItem] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/productItem/${itemId}`)
+    fetch(`https://afternoon-beach-43347.herokuapp.com/productItem/${itemId}`)
       .then((res) => res.json())
       .then((data) => {
         setItem(data);
@@ -37,10 +37,11 @@ const UpdateItem = () => {
     event.preventDefault();
     setNewStock(stock);
     const newStock = parseInt(event.target.stock.value);
-    const stockN = parseInt(stock);
+    const stockN = parseInt(newstock);
     const updateStock = newStock + stockN;
     setNewStock(updateStock);
-    const updateItem = { stock: newstock, delivery: newDelivery };
+    const updateItem = { stock: updateStock, delivery: newDelivery };
+    console.log(updateItem);
 
     fetch(updateUrl, {
       method: "PUT",
@@ -64,14 +65,13 @@ const UpdateItem = () => {
     setNewStock(stockN);
     const deliveryN = parseInt(newDelivery) + 1;
     setNewDelivery(deliveryN);
-    const updateItem = { stock: newstock, delivery: newDelivery };
-
+    const updateItem = { stock: stockN, delivery: deliveryN };
     fetch(updateUrl, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(UpdateItem),
+      body: JSON.stringify(updateItem),
     })
       .then((res) => res.json())
       .then((result) => {

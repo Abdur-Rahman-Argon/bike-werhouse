@@ -23,6 +23,7 @@ const LogIn = () => {
   const location = useLocation();
 
   const from = location?.state?.from?.pathname || "/";
+
   if (user) {
     navigate(from, { replace: true });
   }
@@ -51,16 +52,30 @@ const LogIn = () => {
     return <Spiners />;
   }
 
-  const handleSignIn = (event) => {
+  const handleSignIn = async (event) => {
     event.preventDefault();
     const email = event.target.email.value;
     setEmail(email);
     const password = event.target.password.value;
+    await signInWithEmailAndPassword(email, password);
+
+    // const url = "http://localhost:5000/login";
+    // fetch(url, {
+    //   method: "POST",
+    //   headers: {
+    //     "content-type": "application/json",
+    //   },
+    //   body: JSON.stringify(email),
+    // })
+    //   .then((res) => res.json())
+    //   .then((result) => {
+    //     console.log(result);
+    //   });
+
     if (!error) {
       setError("Please Give Correct Email & Password!");
     } else {
       setError("");
-      signInWithEmailAndPassword(email, password);
       event.target.reset();
     }
   };

@@ -25,10 +25,12 @@ const Banners = () => {
           </h1>
           <p className="m-0 text-sm">
             <b>Description:</b>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias
-            eligendi assumenda sunt amet vel deleniti veritatis animi
-            consequatur! Similique, exercitationem error quisquam dicta sit
-            consequuntur libero culpa illo excepturi quo!
+            Our mission is to cater to the needs of our country's Biker and to
+            promote this entity as a means of transportation apart from being a
+            sport activity. Our goal is to be a full featured bike house where
+            we will not only sell but also provide means to fix bikes, provide a
+            custom paint job and sell parts and accessories to name a few. So we
+            look forward to your support and love in our new journey.
           </p>
           <button className="px-4 text-white rounded  my-5 bg-green-600">
             {" "}
