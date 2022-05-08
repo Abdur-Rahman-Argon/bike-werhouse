@@ -2,7 +2,7 @@ import React from "react";
 
 const Delivery = () => {
   return (
-    <div className="grid grid-cols-3 justify-around">
+    <div className="md:grid md:grid-cols-3 md:justify-around mx-auto">
       <div className="w-60 text-center my-10">
         <div className="my-3">
           <img

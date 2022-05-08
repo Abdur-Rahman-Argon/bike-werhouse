@@ -2,8 +2,8 @@ import React from "react";
 
 const Banners = () => {
   return (
-    <div className="bg-[url('https://i.ibb.co/SmZRfVc/Bgmages.jpg')] bg-no-repeat bg-cover w-10/12 mx-auto">
-      <div className="grid grid-cols-2 justify-around">
+    <div className="bg-[url('https://i.ibb.co/SmZRfVc/Bgmages.jpg')] bg-no-repeat bg-cover container mx-auto">
+      <div className="md:grid md:grid-cols-2 md:justify-around">
         <div className=" px-20 pt-16 pb-4">
           <div className="px-20">
             <h1 className="text-3xl font-bold text-green-700 text-left banner-font-family">

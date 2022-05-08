@@ -7,6 +7,7 @@ import useProducts from "../../components/utilites/useProducts";
 import Footer from "../Footer/Footer";
 import Delivery from "../Delivery/Delivery";
 import DeliveryProsess from "./DeliveryProsess/DeliveryProsess";
+import Newproduct from "./Newproduct/Newproduct";
 
 const Home = () => {
   const [products] = useProducts([]);
@@ -21,8 +22,8 @@ const Home = () => {
           Inventories &#8594;
         </h2>
       </div>
-      <div className="border-2 my-5 w-10/12 mx-auto">
-        <table className="">
+      <div className="border-2 my-5 mx-auto">
+        <table className="w-full">
           <thead className=" bg-green-100">
             <tr>
               <td className="border-2 px-3 font-semibold text-lg">Image</td>
@@ -48,15 +49,15 @@ const Home = () => {
         </table>
       </div>
 
-      <div className="w-10/12 my-10 mx-auto">
+      <div className="container my-10 mx-auto">
         <h2 className="text-2xl font-semibold border-b-2 border-gray-900 w-28 mx-2">
           Marketing
         </h2>
-        <div className="w-9/12 mx-auto">
+        <div className="container mx-auto">
           <Delivery></Delivery>
         </div>
       </div>
-      <div className="w-10/12 mx-auto my-10">
+      <div className="container mx-auto my-10">
         <h2 className="text-2xl  font-semibold border-b-2 border-gray-900 w-48 mx-2 ">
           Delivery prosess
         </h2>
